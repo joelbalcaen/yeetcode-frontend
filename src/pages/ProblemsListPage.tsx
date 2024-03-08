@@ -9,6 +9,7 @@ import {
 import { getAllProblems } from "../apis/problems/problems-api";
 import { Problem } from "../apis/problems/problems-models";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const columnHelper = createColumnHelper<Problem>();
 
@@ -17,7 +18,9 @@ const columns = [
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("title", {
-    cell: (info) => info.getValue(),
+    cell: (info) => (
+      <Link to={`/problems/${info.row.original.id}`}>{info.getValue()}</Link>
+    ),
   }),
   columnHelper.accessor("description", {
     cell: (info) => info.getValue(),
@@ -46,7 +49,7 @@ export default function ProblemsListPage() {
           : flexRender(header.column.columnDef.header, header.getContext())}
       </th>
     );
-  }
+  };
 
   return (
     <table>
