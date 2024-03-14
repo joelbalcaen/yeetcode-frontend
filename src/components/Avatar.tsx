@@ -1,3 +1,6 @@
+import { useKeycloak } from "@react-keycloak/web";
+
 export default function Avatar() {
-    return <>Avatar CMP</>
+    const { keycloak } = useKeycloak();
+    return <>Avatar CMP <button onClick={() => keycloak.logout()}>Logout</button></>
 }
