@@ -18,21 +18,19 @@ const columns = [
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("title", {
-    cell: (info) => (
-      <Link to={`/problems/${info.row.original.id}`}>{info.getValue()}</Link>
-    ),
+    cell: (info) => <Link to={`/problems/${info.row.original.id}`}>{info.getValue()}</Link>
   }),
   columnHelper.accessor("description", {
     cell: (info) => info.getValue(),
   }),
   // type cast is necessary here because https://github.com/TanStack/table/issues/4241
-] as ColumnDef<Problem, unknown>[];
+] as Array<ColumnDef<Problem, unknown>>;
 
 export default function ProblemsListPage() {
   const [data, setData] = useState<Array<Problem>>([]);
 
   useEffect(() => {
-    getAllProblems().then((problems) => setData(problems));
+    getAllProblems().then(setData);
   }, []);
 
   const table = useReactTable<Problem>({

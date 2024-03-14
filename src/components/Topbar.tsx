@@ -1,3 +1,7 @@
+import Avatar from "./Avatar";
+
 export default function Topbar() {
-    return <div>Topbar</div>
+    return <div>
+        <Avatar/>
+    </div>
 }
